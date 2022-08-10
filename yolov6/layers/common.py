@@ -562,7 +562,7 @@ class RepBlock(nn.Module):
     def __init__(self, in_channels, out_channels, n=1, block=RepVGGBlock):
         super().__init__()
         self.conv1 = block(in_channels, out_channels)
-        self.block = nn.Sequential(*(block(out_channels, out_channels) for _ in range(n - 1))) if n > 1 else None
+        self.block = nn.Sequential(*(block(in_channels, out_channels) for _ in range(n - 1))) if n > 1 else None
 
     def forward(self, x):
         x = self.conv1(x)
